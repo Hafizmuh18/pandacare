@@ -34,9 +34,7 @@ jobs:
           host: 3.106.231.215
           username: ec2-user
           key: ${{ secrets.SSH_KEY }}
-          source: |
-            build/libs/*.jar
-            Dockerfile
+          source: "build/libs/*.jar,Dockerfile"
           target: /home/ec2-user/app
 
       - name: SSH and deploy with Docker
@@ -47,7 +45,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /home/ec2-user/app
-            mv build/libs/*.jar app.jar
+            mv build/libs/*.jar app.jar || true
             docker stop springboot-app || true
             docker rm springboot-app || true
             docker build -t springboot-app .
