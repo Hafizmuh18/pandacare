@@ -31,7 +31,7 @@ jobs:
       - name: Copy JAR and Dockerfile to EC2
         uses: appleboy/scp-action@v0.1.4
         with:
-          host: 3.106.231.215
+          host: 13.211.245.12
           username: ec2-user
           key: ${{ secrets.SSH_KEY }}
           source: "build/libs/*.jar,Dockerfile"
@@ -40,7 +40,7 @@ jobs:
       - name: SSH and deploy with Docker
         uses: appleboy/ssh-action@master
         with:
-          host: 3.106.231.215
+          host: 13.211.245.12
           username: ec2-user
           key: ${{ secrets.SSH_KEY }}
           script: |
